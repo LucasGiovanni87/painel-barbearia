@@ -269,6 +269,7 @@ function PainelBarbeiro({ usuario, onSair }) {
   const [agendamentos, setAgendamentos] = useState([])
   const [visualizacao, setVisualizacao] = useState('dia')
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   useEffect(() => {
     buscarAgendamentos()
   }, [visualizacao])
