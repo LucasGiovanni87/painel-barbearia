@@ -102,6 +102,12 @@ function PainelDono({ usuario, onSair }) {
     setLoading(false)
   }
 
+  async function excluirBarbeiro(id, nomeBarbeiro) {
+    if (!window.confirm(`Excluir o barbeiro "${nomeBarbeiro}"?`)) return
+    await supabase.from('barbeiros').delete().eq('id', id)
+    buscarBarbeiros()
+  }
+
   async function cadastrarAgendamento(e) {
     e.preventDefault()
     if (!clienteNome || !barbeiroEscolhido || !data || !horario) return alert('Preencha todos os campos!')
@@ -190,10 +196,13 @@ function PainelDono({ usuario, onSair }) {
                   <div style={{ width: 36, height: 36, borderRadius: '50%', background: '#e8eaf6', display: 'flex', alignItems: 'center', justifyContent: 'center', fontWeight: 600, fontSize: 13, color: '#3949ab' }}>
                     {b.nome.slice(0, 2).toUpperCase()}
                   </div>
-                  <div>
+                  <div style={{ flex: 1 }}>
                     <p style={{ margin: 0, fontWeight: 600 }}>{b.nome}</p>
                     <p style={{ margin: 0, fontSize: 12, color: '#888' }}>{b.email}</p>
                   </div>
+                  <button onClick={() => excluirBarbeiro(b.id, b.nome)} style={{ fontSize: 12, padding: '4px 10px', borderRadius: 6, border: '1px solid #ffcdd2', background: '#fff', color: '#e53935', cursor: 'pointer' }}>
+                    Excluir
+                  </button>
                 </div>
               ))}
               {mostrarForm ? (
@@ -270,9 +279,9 @@ function PainelBarbeiro({ usuario, onSair }) {
   const [visualizacao, setVisualizacao] = useState('dia')
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
- useEffect(() => {
-    buscarAgendamentos() // eslint-disable-line
-  }, [visualizacao]) // eslint-disable-line
+  useEffect(() => {
+    buscarAgendamentos()
+  }, [visualizacao])
 
   async function buscarAgendamentos() {
     const hoje = new Date().toISOString().split('T')[0]
@@ -380,4 +389,4 @@ function App() {
   return <PainelBarbeiro usuario={usuario} onSair={onSair} />
 }
 
-export default App 
+export default App
