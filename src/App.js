@@ -270,9 +270,9 @@ function PainelBarbeiro({ usuario, onSair }) {
   const [visualizacao, setVisualizacao] = useState('dia')
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  useEffect(() => {
-    buscarAgendamentos()
-  }, [visualizacao])
+ useEffect(() => {
+    buscarAgendamentos() // eslint-disable-line
+  }, [visualizacao]) // eslint-disable-line
 
   async function buscarAgendamentos() {
     const hoje = new Date().toISOString().split('T')[0]
