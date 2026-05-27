@@ -11,8 +11,16 @@ const css = `
     padding: 50px 20px 36px;
     text-align: center;
     border-bottom: 1px solid #222;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
-  .hero-logo { width: 120px; height: 120px; border-radius: 50%; object-fit: cover; margin-bottom: 20px; border: 2px solid #c9a84c44; }
+  .hero-logo { 
+    width: 130px; height: 130px; border-radius: 50%; 
+    object-fit: cover; margin-bottom: 20px; 
+    border: 2px solid #c9a84c66;
+    display: block;
+  }
   .hero-badge {
     display: inline-block;
     background: #c9a84c22;
@@ -38,7 +46,12 @@ const css = `
     color: #ccc;
   }
 
-  .form-section { padding: 36px 20px; max-width: 480px; margin: 0 auto; }
+  .form-section { 
+    padding: 36px 20px; 
+    max-width: 480px; 
+    margin: 0 auto; 
+    width: 100%;
+  }
   .form-title { font-size: 18px; font-weight: 600; margin-bottom: 22px; text-align: center; }
   .form-title span { color: #c9a84c; }
 
@@ -64,12 +77,13 @@ const css = `
     background: #1a1a1a;
     border: 1px solid #333;
     border-radius: 8px;
-    padding: 14px;
+    padding: 14px 10px;
     cursor: pointer;
     transition: all 0.2s;
     display: flex;
     align-items: center;
     gap: 10px;
+    min-width: 0;
   }
   .barbeiro-card:hover { border-color: #c9a84c44; }
   .barbeiro-card.selected { border-color: #c9a84c; background: #c9a84c11; }
@@ -77,10 +91,17 @@ const css = `
     width: 38px; height: 38px; border-radius: 50%;
     background: #c9a84c22; border: 1px solid #c9a84c44;
     display: flex; align-items: center; justify-content: center;
-    font-weight: 700; font-size: 14px; color: #c9a84c;
+    font-weight: 700; font-size: 13px; color: #c9a84c;
     flex-shrink: 0;
   }
-  .barbeiro-nome { font-size: 14px; font-weight: 500; }
+  .barbeiro-nome { 
+    font-size: 14px; font-weight: 500;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    min-width: 0;
+    flex: 1;
+  }
 
   .horarios-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 8px; }
   .horario-btn {
@@ -118,6 +139,8 @@ const css = `
   .sucesso {
     text-align: center;
     padding: 60px 20px;
+    max-width: 480px;
+    margin: 0 auto;
   }
   .sucesso-icon { font-size: 60px; margin-bottom: 16px; }
   .sucesso h2 { font-size: 24px; margin-bottom: 8px; }
